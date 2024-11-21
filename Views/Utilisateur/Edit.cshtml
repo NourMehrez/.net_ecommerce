@@ -1,0 +1,146 @@
+﻿@model First_Project.Models.ViewModels.UtilisateurRoleModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<
+<head>
+<style>
+        /* site.css */
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+            border-color: #ddd;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                box-shadow: none;
+            }
+
+        .img-thumbnail {
+            border-radius: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #004085;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+                border-color: #545b62;
+            }
+
+        .text-danger {
+            font-size: 0.875rem;
+        }
+
+</style>
+</head>
+<body>
+<div class="container my-2">
+   
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label asp-for="RoleId" class="form-label"></label>
+                    </div>
+                    <div class="col-md-9">
+                        <select asp-for="RoleId" readonly class="form-control" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))"></select>
+                        <span asp-validation-for="RoleId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label asp-for="Email" class="form-label"></label>
+                    </div>
+                    <div class="col-md-9">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <label asp-for="UserName" class="form-label"></label>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label asp-for="Password" class="form-label"></label>
+                    </div>
+                    <div class="col-md-9">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label asp-for="file" class="form-label"></label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="file" name="file" asp-for="file" class="form-control mb-2" />
+                        <img src="~/uploads/@Model.Imageurl" style="width:150px;" class="img-thumbnail" />
+                        <span asp-validation-for="file" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-warning px-5">Save</button>
+                    <a asp-action="Index" class="btn btn-outline-info px-5 ms-3">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>

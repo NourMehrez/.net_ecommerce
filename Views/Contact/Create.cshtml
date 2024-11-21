@@ -1,0 +1,101 @@
+﻿@model First_Project.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<head>
+    <title>Contact V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/assets/Contact/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/Contact/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div>
+        <div class="container-contact1">
+            <div class="contact1-pic js-tilt" data-tilt>
+                <img src="~/assets/Contact/images/img-01.png" alt="IMG">
+            </div>
+
+            <!-- Form to create a new contact -->
+            <form asp-action="Create" method="post" class="contact1-form validate-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <span class="contact1-form-title">
+                    Get in touch
+                </span>
+
+                <div class="wrap-input1 validate-input" data-validate="Name is required">
+                    <input asp-for="Name" class="input1 form-control" placeholder=" Name" />
+                    <span class="shadow-input1"></span>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input asp-for="Email" class="input1 form-control" placeholder=" Email" />
+                    <span class="shadow-input1"></span>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="wrap-input1 validate-input" data-validate="Subject is required">
+                    <input asp-for="Subject" class="input1 form-control" placeholder=" Subject" />
+                    <span class="shadow-input1"></span>
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+
+                <div class="wrap-input1 validate-input" data-validate="Message is required">
+                    <textarea asp-for="message" class="input1 form-control" placeholder=" Message"></textarea>
+                    <span class="shadow-input1"></span>
+                    <span asp-validation-for="message" class="text-danger"></span>
+                </div>
+
+                <div class="container-contact1-form-btn">
+                    <button class="contact1-form-btn btn btn-primary" type="submit">
+                        <span>
+                            Send Email
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="~/assets/Contact/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/assets/Contact/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/assets/Contact/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/assets/Contact/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/assets/Contact/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/assets/Contact/js/main.js"></script>
+
+</body>

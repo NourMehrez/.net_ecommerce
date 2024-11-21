@@ -1,0 +1,93 @@
+﻿@model IEnumerable<First_Project.Models.Commande>
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<div >
+    <div class="d-flex justify-content-between align-items-center  mb-4">
+        <h1 class="fw-bold ">Order</h1>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">+ Add Order</a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded bg-white">
+        <table class="table table-striped table-hover">
+            <thead style="background-color: #f8f9fa; color: #333;">
+                <tr class="text-center">
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">User Email</th>
+                    <th scope="col" >Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td> @item.DateCommande.ToString("MMMM dd, yyyy")</td>
+                        <td>@Html.DisplayFor(modelItem => item.prix)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Utilisateur.Email)</td>
+                        <td >
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="@Url.Action("Index", "CommandeProduit", new { commandeId = @item.Id })" class="btn btn-sm btn-outline-Warning">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            max-width: 1100px;
+        }
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table thead {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+        .btn-sm {
+            padding: 0.25rem 0.75rem;
+        }
+        .btn-outline-primary, .btn-outline-info, .btn-outline-danger {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-outline-info:hover {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .text-primary {
+            color: #007bff !important;
+        }
+    </style>
+
+
+
+
+
+
+

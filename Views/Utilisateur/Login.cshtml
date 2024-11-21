@@ -1,0 +1,62 @@
+﻿@model First_Project.Models.ViewModels.loginViewModel
+
+@{
+    ViewData["Title"] = "login";
+}
+
+
+<head>
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="~/fonts/linearicons/style.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/css/Login_css/style.css">
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="inner">
+			<img src="~/img/images/image-1.png" alt="" class="image-1">
+            <form asp-action="Login">
+				<h3>New Account?</h3>
+               
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                    <div class="form-group">
+                    <i class="fa-duotone fa-solid fa-user fa-beat fa-lg"></i>
+                    <label asp-for="UserNameOrEmail" class="control-label mr-2"></label>
+                        <input asp-for="UserNameOrEmail" class="form-control" />
+                        <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                    <i class="fa-duotone fa-solid fa-lock fa-beat " style="--fa-primary-color: #43c021; --fa-secondary-color: #34893e;"></i>
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                <button type="submit" value="Login">
+                    <span> Login</span>
+                </button>
+
+                <a asp-action="Registration">Go to Registration</a>
+                <img src="~/img/images/image-2.png" alt="" class="image-2">
+            </form>
+				
+				
+			
+			
+		</div>
+
+	</div>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

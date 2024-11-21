@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Produit>
+
+@{
+    ViewData["Title"] = "List Stock";
+}
+<div class="container-fluid bg-dark text-white-50 text-center">
+    <div class="container-fluid">
+        <div class="pb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5);border-radius:30px">
+            <div class="row justify-content-center">
+                <div class="col-lg-3">
+                    <a href="#">
+                        <h1 class="text-secondary mb-0 mt-3">List stock</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-primary mt-1 mr-15" style="margin-left: 30px;" ><i class="fa-solid fa-user-plus"></i> Create New</a>
+
+</p>
+<table class="table   table-hover  ">
+    <thead>
+        <tr class="text-center">
+
+            <th>
+                image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LibelleProduit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageProduit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock.Qte)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+
+                <td class="align-middle">
+
+
+                    <img class="rounded-circle" src="~/uploads/@item.ImageProduit" alt="Alternate Text" style="width:80px" class="img-thumbnail" />
+
+
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.LibelleProduit)
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Stock.Qte)
+                </td>
+
+                <td class="align-middle">
+
+                    <a href="@Url.Action("Edit", "Stock", new { id = item.IdProduit})" class="btn btn-success">
+                        <i class="fas fa-edit"></i> +Add
+                    </a>
+                    <a href="@Url.Action("delete", "Produit", new { id = item.IdProduit})" class="btn btn-success">
+                        <i class="fas fa-edit"></i> delete
+                    </a>
+                    <a href="@Url.ActionLink("Historique", "Stock", new { id = item.IdProduit })" class="btn btn-warning">
+                        <i class="fa-sharp fa-solid fa-circle-info"></i>Historique
+                    </a>
+
+                    <a href="@Url.Action("delete", "Produit", new { id = item.IdProduit})"  class="btn btn-danger ">
+                        <i class="fa-sharp fa-solid fa-trash"></i>delete
+
+                    </a>
+
+
+
+
+
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>

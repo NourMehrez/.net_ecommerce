@@ -1,0 +1,52 @@
+﻿@model IEnumerable<First_Project.Models.CommandeProduit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 class="text-center mb-4">List of product orders</h1>
+
+
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            
+            <th>product image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>money</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center align-middle">
+
+                <td>
+                    <img src="~/uploads/@item.Produit.ImageProduit" alt="Image Produit"
+                         class="img-fluid rounded-circle img-thumbnail" style="width: 80px; height: 80px;" />
+                </td>
+                <td>@item.Produit.LibelleProduit</td>
+                <td>@item.Quantite</td>
+                <td>@item.Produit.Categorie</td>
+                <td>@item.prix.ToString("C")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-warning mx-1">
+                        <i class="fa fa-edit"></i> Details
+                    </a>
+                   
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<First_Project.Models.Produit>
+
+@{
+    ViewData["Title"] = "List of Product";
+}
+<body>
+    <div class="container-fluid bg-dark text-white-50 text-center" style="color: yellowgreen">
+    <div class="container-fluid" style="color: yellowgreen">
+        <div class="pb-4" style="border-bottom: 1px solid ;border-radius:30px">
+            <div class="row justify-content-center" >
+                <div class="col-lg-3">
+                    <a href="#">
+                        <h1 class="text-secondary mb-0 mt-3">products</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bouton flottant -->
+
+    @if (User.IsInRole("Admin"))
+    {
+<p class="btn btn-warning mr-2 mt-1" style="margin-left: 30px;">
+    <a asp-action="Create" class="text-white">Create New</a>
+</p>
+    }
+<div class="container-fluid ">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-3 mb-4 mt-3">
+                    <div class="h-100">
+                        <div class="vesitable">
+                            <div class="owl-carousel vegetable-carousel justify-content-center">
+                                <!-- Item 1 -->
+                                <div class="border border-primary rounded position-relative vesitable-item h-100">
+                                    <div class="vesitable-img">
+                                        <img src="~/uploads/@item.ImageProduit" class="img-fluid w-100 rounded-top" alt="" style="height: 200px; object-fit: cover;">
+                                    </div>
+                                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">@item.Categorie.NomCategorie</div>
+                                    <div class="p-4 pb-0 rounded-bottom d-flex flex-column h-100">
+                                        <h4>@item.LibelleProduit</h4>
+                                        <p>@item.Categorie.Description</p>
+                                        <h5 class="card-title">
+
+                                           
+                                            
+                                        </h5>
+                                        <div class="d-flex justify-content-between flex-lg-wrap mb-2">
+                                            <p class="card-text">
+                                                <b>Status: </b>
+                                                @if (item.Stock != null)
+                                                {
+                                                    if (item.Stock.Qte >= 1)
+                                                    {
+                                                        <span class="badge bg-success text-white">AVAILABLE</span>
+                                                    }
+                                                    else if (item.Stock.Qte == 0)
+                                                    {
+                                                        <span class="badge bg-danger text-white">EXPIRED</span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary text-white">UNKNOWN</span>
+                                                }
+                                            </p>
+                                                <div class="d-flex justify-content-between align-items-center mt-auto" style="margin-bottom:4px">
+                                                    <a class="btn btn-outline-primary w-auto flex-grow-0" asp-action="Details" asp-route-id="@item.IdProduit">
+                                                        <i class="bi bi-eye-fill"></i> Details
+                                                    </a>
+                                                   
+                                                       
+                                                            <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-ProduitId="@item.IdProduit" class="btn border border-secondary rounded-pill w-auto flex-grow-0 px-3 py-1 text-primary">
+                                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                            </a>
+                                                        
+                                                       
+                                                    
+                                                   
+                                                </div>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+</body>

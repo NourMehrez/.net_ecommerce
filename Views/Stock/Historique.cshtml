@@ -1,0 +1,80 @@
+﻿@model IEnumerable<First_Project.Models.Historique>
+
+@{
+    ViewData["Title"] = "Historique";
+}
+
+
+
+
+<style>
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #ddd;
+    }
+
+    /* Ajout d'une couleur différente sur le survol */
+    .table-hover tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Personnalisation de la couleur des en-têtes */
+    .thead-success th {
+        background-color: #28a745;
+        color: white;
+    }
+
+    /* Ajustement des marges et padding pour un affichage plus compact */
+    .table th, .table td {
+        padding: 12px;
+        vertical-align: middle;
+    }
+
+    /* Ajout d'une ombre pour un effet flottant */
+    .table {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        width:80%;
+    }
+</style>
+<h1 class="text-center">Stock History</h1>
+
+<a href="/Produit/Stock" class="btn btn-primary" style="margin-left: 150px;">Back to List</a>
+
+<center>
+<table class="table table-bordered  table-hover mt-3">
+    <thead class="bg-warning text-white">
+        <tr>
+            <th>
+               Date 
+            </th>
+            <th>
+               Quantity 
+            </th>
+            <th>
+                Stock Id
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                   
+                    @item.CreatedAt.ToString("MMMM dd, yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QteChange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock.Id)
+            </td>
+         
+        </tr>
+}
+    </tbody>
+</table>
+</center>
+
+

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Stock>
+
+@{
+    ViewData["Title"] = "List Stock";
+}
+<div class="container-fluid bg-dark text-white-50 text-center">
+    <div class="container-fluid">
+        <div class="pb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5);border-radius:30px">
+            <div class="row justify-content-center">
+                <div class="col-lg-3">
+                    <a href="#">
+                        <h1 class="text-secondary mb-0 mt-3">List stock</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-primary mr-20 mt-1"><i class="fa-solid fa-user-plus"></i> Create New</a>
+
+</p>
+<table class="table   table-hover  ">
+    <thead>
+        <tr class="text-center">
+
+            <th>
+                image
+            </th>
+            <th>
+               Name product
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+               Quantity
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { @if(item.Produit!= null){
+            <tr class="text-center">
+
+                <td class="align-middle">
+                   
+                    
+                        <img class="rounded-circle" src="~/uploads/@item.Produit.ImageProduit" alt="Alternate Text" style="width:80px" class="img-thumbnail" />
+                    
+
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Produit.LibelleProduit)
+                </td>
+                    <td class="align-middle">
+                       @if (item.Qte >= 1)
+                        {
+                        <span class="badge bg-success text-white">AVAILABLE</span>
+                        }
+                        else if (item.Qte == 0)
+                        {
+                        <span class="badge bg-danger text-white">EXPIRED</span>
+                        }
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Qte)
+                </td>
+
+                <td class="align-middle">
+
+                    <a href="@Url.Action("Edit", "Stock", new { id = item.Id})" class="btn btn-success">
+                        <i class="fas fa-edit"></i> +Add
+                    </a>
+                    <a href="@Url.ActionLink("Historique", "Stock", new { id = item.Id })" class="btn btn-warning">
+                        <i class="fa-sharp fa-solid fa-circle-info"></i>Historique
+                    </a>
+
+                      <a href="@Url.Action("delete", "Produit", new { id = item.Produit.IdProduit})"  class="btn btn-danger ">
+                        <i class="fa-sharp fa-solid fa-trash"></i>delete
+
+                    </a
+
+
+
+
+
+                </td>
+                </tr>
+            }
+            
+        }
+        
+    </tbody>
+</table>

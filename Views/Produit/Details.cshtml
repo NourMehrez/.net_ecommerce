@@ -1,0 +1,36 @@
+﻿@model First_Project.Models.Produit
+@{
+    ViewData["Title"] = "Details Produit";
+}
+
+<!-- Single Product Start -->
+<div class="container-fluid mt-2 py-3">
+    <div class="container ">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8 col-xl-9">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded">
+                            <a href="#">
+                                <img src="~/Uploads/@Model.ImageProduit" class="img-fluid rounded" alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3">@Model.LibelleProduit</h4>
+                        <p class="mb-3">$: @Model.prix/Kg</p>
+                        <p class="mb-3">Category: @Model.Categorie.NomCategorie</p>
+                        <h5 class="fw-bold mb-3">Quantity: @Model.Stock.Qte</h5>
+                        <p class="mb-4">@Model.Categorie.Description</p>
+                        
+       
+                        <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+          
+</div>
+<!-- Single Product End -->
